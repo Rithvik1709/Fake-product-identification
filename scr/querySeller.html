@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Fake Product Identification - Query Sellers</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .navbar {
+            background-color: #343a40;
+        }
+        .navbar-brand {
+            font-weight: bold;
+        }
+        .hero {
+            background-color: #007bff;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+        }
+        .card {
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .btn-warning {
+            background-color: #ffc107;
+            border: none;
+        }
+        .btn-warning:hover {
+            background-color: #e0a800;
+        }
+        .footer {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">Fake Product Identification</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="manufacturer.html" class="nav-link">Manufacturer</a></li>
+                <li class="nav-item"><a href="seller.html" class="nav-link">Seller</a></li>
+                <li class="nav-item"><a href="consumer.html" class="nav-link">Consumer</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="hero">
+    <div class="container">
+        <h1>Query Sellers</h1>
+        <p>Enter a Manufacturer Code to query the sellers registered through Blockchain.</p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <h3 class="card-title text-center">Query Seller Data</h3>
+            <div class="form-group">
+                <label for="manufacturerCode">Manufacturer Code</label>
+                <input type="text" class="form-control" id="manufacturerCode" placeholder="Enter Manufacturer Code" name="manufacturerCode">
+            </div>
+            <button type="submit" class="btn btn-warning btn-block" id="getSellersBtn">Get Sellers</button>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-body">
+            <h3 class="card-title text-center">Sellers</h3>
+            <p class="text-center">Following are the sellers registered through Blockchain Network</p>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Brand</th>
+                        <th>Code</th>
+                        <th>Number</th>
+                        <th>Manager</th>
+                        <th>Address</th>
+                    </tr>
+                </thead>
+                <tbody id="logdata">
+                    <!-- Data will be dynamically populated here -->
+                </tbody>
+            </table>
+            <center><p>Your address is <b id="add"></b></p></center>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <p>&copy; 2024 Fake Product Identification | Powered by Blockchain</p>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script src="js/web3.min.js"></script>
+<script src="js/truffle-contract.js"></script>
+<script src="js/sellerDataApp.js"></script>
+
+<script>
+    // Event listener for the Get Sellers button
+    document.getElementById('getSellersBtn').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent default form submission behavior
+
+        var manufacturerCode = document.getElementById('manufacturerCode').value;
+
+        if (manufacturerCode) {
+            // Fetch sellers data based on manufacturer code
+            getSellersData(manufacturerCode);
+        } else {
+            alert('Please enter a valid Manufacturer Code.');
+        }
+    });
+
+    function getSellersData(manufacturerCode) {
+        // Call your blockchain or server logic here to fetch the sellers based on manufacturer code
+        // For example, fetching data from blockchain via web3.js
+
+        // Example of data you might get (replace with real fetch logic)
+        var sellers = [
+            { id: 1, name: 'Seller 1', brand: 'Brand A', code: manufacturerCode, number: '12345', manager: 'Manager 1', address: 'Address 1' },
+            { id: 2, name: 'Seller 2', brand: 'Brand B', code: manufacturerCode, number: '67890', manager: 'Manager 2', address: 'Address 2' }
+        ];
+
+        // Populate the table with the seller data
+        var logdata = document.getElementById('logdata');
+        logdata.innerHTML = ''; // Clear existing data
+        sellers.forEach(function(seller) {
+            var row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${seller.id}</td>
+                <td>${seller.name}</td>
+                <td>${seller.brand}</td>
+                <td>${seller.code}</td>
+                <td>${seller.number}</td>
+                <td>${seller.manager}</td>
+                <td>${seller.address}</td>
+            `;
+            logdata.appendChild(row);
+        });
+    }
+</script>
+
+</body>
+</html>

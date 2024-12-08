@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Fake Product Identification</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .navbar {
+            background-color: #343a40;
+        }
+        .navbar-brand {
+            font-weight: bold;
+        }
+        .hero {
+            background-color: #007bff;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+        }
+        .card {
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .btn-warning {
+            background-color: #ffc107;
+            border: none;
+        }
+        .btn-warning:hover {
+            background-color: #e0a800;
+        }
+        .footer {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">Fake Product Identification</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="manufacturer.html" class="nav-link">Manufacturer</a></li>
+                <li class="nav-item"><a href="seller.html" class="nav-link">Seller</a></li>
+                <li class="nav-item"><a href="consumer.html" class="nav-link">Consumer</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="hero">
+    <div class="container">
+        <h1>Add Product</h1>
+        <p>Easily add products and generate QR codes and barcodes.</p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <h3 class="card-title text-center">Product Details</h3>
+            <form>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="manufacturerID">Manufacturer ID</label>
+                        <input type="text" class="form-control" id="manufacturerID" placeholder="Enter Manufacturer ID">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="productName">Product Name</label>
+                        <input type="text" class="form-control" id="productName" placeholder="Enter Product Name">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="productSN">Product Serial Number</label>
+                        <input type="text" class="form-control" id="productSN" placeholder="Enter Serial Number">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="productBrand">Product Brand</label>
+                        <input type="text" class="form-control" id="productBrand" placeholder="Enter Brand Name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="productPrice">Product Price</label>
+                    <input type="text" class="form-control" id="productPrice" placeholder="Enter Product Price">
+                </div>
+                <button type="button" class="btn btn-warning btn-block" onclick="generateCodes()">Generate Codes</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="card mt-4">
+        <div class="card-body text-center">
+            <h3 class="card-title">Generated QR Code</h3>
+            <div id="qr-display">
+                <img id="imgQR" hidden src="" alt="QR Code" class="img-fluid">
+                <button hidden id="downloadQR" class="btn btn-warning mt-3" onclick="saveQR()">Download QR Code</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mt-4">
+        <div class="card-body text-center">
+            <h3 class="card-title">Generated Barcode</h3>
+            <div id="barcode-display">
+                <svg id="barcode" hidden></svg>
+                <button hidden id="downloadBarcode" class="btn btn-warning mt-3" onclick="saveBarcode()">Download Barcode</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <p>&copy; 2024 Fake Product Identification | Powered by Blockchain</p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"></script>
+<script>
+    var qrSrc;
+
+    function generateCodes() {
+        const qrValue = document.getElementById('productSN').value;
+        const qrImage = document.getElementById('imgQR');
+        const downloadQRBtn = document.getElementById('downloadQR');
+        const barcodeSVG = document.getElementById('barcode');
+        const downloadBarcodeBtn = document.getElementById('downloadBarcode');
+
+        if (qrValue.trim() === "") {
+            alert("Please enter a valid Product Serial Number.");
+            return;
+        }
+
+        // Generate QR Code
+        qrSrc = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${qrValue}`;
+        qrImage.src = qrSrc;
+        qrImage.hidden = false;
+        downloadQRBtn.hidden = false;
+
+        // Generate Barcode
+        JsBarcode(barcodeSVG, qrValue, {
+            format: "CODE128",
+            lineColor: "#000",
+            width: 2,
+            height: 100,
+            displayValue: true
+        });
+        barcodeSVG.hidden = false;
+        downloadBarcodeBtn.hidden = false;
+    }
+
+    function saveQR() {
+        saveAs(qrSrc, document.getElementById('productSN').value + "-QR.png");
+    }
+
+    function saveBarcode() {
+        const svg = document.getElementById('barcode');
+        const serializer = new XMLSerializer();
+        const svgBlob = new Blob([serializer.serializeToString(svg)], { type: "image/svg+xml;charset=utf-8" });
+        saveAs(svgBlob, document.getElementById('productSN').value + "-Barcode.svg");
+    }
+</script>
+
+</body>
+</html>

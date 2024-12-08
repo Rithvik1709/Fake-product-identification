@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Fake Product Identification</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: 'Roboto', sans-serif;
+        background-color: #f4f4f9;
+        color: #333;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .navbar {
+        background-color: #007bff;
+      }
+
+      .navbar-brand {
+        font-weight: bold;
+        color: #fff;
+      }
+
+      .navbar-brand span {
+        color: #ffc107;
+      }
+
+      .welcome-section {
+        background: #fff;
+        text-align: center;
+        padding: 50px 20px;
+        margin: 20px auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .welcome-section h1 {
+        font-size: 2.5rem;
+        color: #007bff;
+        margin-bottom: 15px;
+      }
+
+      .welcome-section p {
+        font-size: 1rem;
+        color: #555;
+      }
+
+      footer {
+        background: #007bff;
+        color: white;
+        text-align: center;
+        padding: 10px 0;
+        margin-top: auto; /* Pushes footer to the bottom */
+      }
+
+      .btn-primary {
+        background-color: #007bff;
+        border: none;
+      }
+
+      .btn-primary:hover {
+        background-color: #0056b3;
+      }
+
+      /* Cursor Effect */
+      .cursor {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background: #007bff;
+        border-radius: 50%;
+        pointer-events: none;
+        transition: transform 0.1s ease;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Custom Cursor -->
+    <div class="cursor" id="cursor"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          Fake Product Identification <span>through Blockchain</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+            <li class="nav-item"><a href="manufacturer.html" class="nav-link">Manufacturer</a></li>
+            <li class="nav-item"><a href="seller.html" class="nav-link">Seller</a></li>
+            <li class="nav-item"><a href="consumer.html" class="nav-link">Consumer</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Welcome Section -->
+    <section class="welcome-section">
+      <div class="container">
+        <h1>Welcome to Fake Product Identification</h1>
+        <p>Ensure the authenticity of products through blockchain technology.</p>
+        <a href="consumer.html" class="btn btn-primary">Get Started</a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2024 Fake Product Identification. All rights reserved.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+      // Cursor Effect
+      const cursor = document.getElementById('cursor');
+      document.addEventListener('mousemove', (e) => {
+        cursor.style.left = `${e.pageX}px`;
+        cursor.style.top = `${e.pageY}px`;
+      });
+      document.addEventListener('mousedown', () => {
+        cursor.style.transform = 'scale(2)';
+      });
+      document.addEventListener('mouseup', () => {
+        cursor.style.transform = 'scale(1)';
+      });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>

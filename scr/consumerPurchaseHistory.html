@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Consumer Product History - Fake Product Identification</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+      body {
+        font-family: 'Roboto', sans-serif;
+        background-color: #f8f9fa;
+      }
+      .navbar {
+        background-color: #343a40;
+      }
+      .navbar-brand {
+        font-weight: bold;
+      }
+      .page-header {
+        text-align: center;
+        padding: 30px 0;
+        background-color: #007bff;
+        color: white;
+        margin-bottom: 30px;
+      }
+      .page-header h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+      }
+      .form-section, .table-section {
+        background: white;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      .form-section label {
+        font-weight: 500;
+      }
+      .table th {
+        background-color: #343a40;
+        color: white;
+      }
+      .footer {
+        background-color: #343a40;
+        color: white;
+        text-align: center;
+        padding: 10px 0;
+        margin-top: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">Fake Product Identification</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+            <li class="nav-item"><a href="manufacturer.html" class="nav-link">Manufacturer</a></li>
+            <li class="nav-item"><a href="seller.html" class="nav-link">Seller</a></li>
+            <li class="nav-item active"><a href="consumer.html" class="nav-link">Consumer</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="page-header">
+      <div class="container">
+        <h2>Consumer Product History</h2>
+      </div>
+    </div>
+
+    <!-- Consumer Code Form Section -->
+    <section class="form-section container">
+      <form id="consumerForm">
+        <div class="form-group">
+          <label for="consumerCode">Consumer Code</label>
+          <input type="text" class="form-control" id="consumerCode" name="consumerCode" placeholder="Enter Consumer Code" required>
+        </div>
+        <button type="button" class="btn btn-warning btn-block" id="register">Get Products</button>
+      </form>
+    </section>
+
+    <!-- Products Table Section -->
+    <section class="table-section container mt-5">
+      <h3>Products Purchased by Consumer</h3>
+      <table class="table table-striped table-bordered mt-3">
+        <thead>
+          <tr>
+            <th>Product SN</th>
+            <th>Seller Code</th>
+            <th>Manufacturer Code</th>
+          </tr>
+        </thead>
+        <tbody id="logdata">
+          <tr>
+            <td colspan="3" class="text-center">No data available</td>
+          </tr>
+        </tbody>
+      </table>
+      <center><p>Your address is <b id="add"></b></p></center>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>&copy; 2024 Fake Product Identification | Powered by Blockchain</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/web3.min.js"></script>
+    <script src="js/truffle-contract.js"></script>
+    <script src="js/consumerPurchaseHistory.js"></script>
+  </body>
+</html>
